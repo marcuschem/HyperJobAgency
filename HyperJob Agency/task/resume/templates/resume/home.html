@@ -1,0 +1,25 @@
+{% extends 'resume/base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+<div class="container pt-5">
+    {% if user.is_staff %}
+        <form action="/vacancy/new" method="post">{% csrf_token %}
+            <div class="form-group">
+                <label for="description">description: </label>
+                <input id="description" class="form-control" type="text" name="description"><br><br>
+                <input class="btn btn-danger" type="submit" value="Create"><br><br>
+            </div>
+        </form>
+    {% else %}
+        <form action="/resume/new" method="post">{% csrf_token %}
+            <div class="form-group">
+                <label for="description">description: </label>
+                <input id="description" class="form-control" type="text" name="description"><br><br>
+                <input class="btn btn-danger" type="submit" value="Create"><br><br>
+            </div>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
